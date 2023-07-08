@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+jinja2
+aiofiles
+python-multipart
+pytest
+python-dotenv
+sqlalchemy
+pdfkit
+fastapi_mail
