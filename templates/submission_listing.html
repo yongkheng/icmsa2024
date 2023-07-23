@@ -1,0 +1,36 @@
+
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+
+<h3>Summary of all subimssion</h3>
+
+<div class="table-responsive-sm">
+  <table class="table table-striped table-bordered table-hover">
+    <tbody>
+      <tr>
+        <th>No.</th>
+        <th>Submitted Timestamp</th>
+        <th>Submission ID</th>
+        <th>Rev</th>
+        <th>Corresponding Author</th>
+        <th>Title</th>
+      </tr>
+     {% for item in items %}
+      <tr>
+        <td>{{loop.index}}</td>
+        <td>{{item.timestamp}}</td>
+        <td>{{item.submission_id}}</td>
+        <td><a href="/admin/query_submission?submission_id={{item.submission_id}}&revision_version={{item.revision_version}}">{{item.revision_version}}</a></td>
+        <td>{{item.corresponding_name}}</td>
+        <td><a href="/api/get_receipt?fname={{item.submission_filename}}" target=”_blank” >{{item.submission_title}}<a></a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+
+{% endblock %}

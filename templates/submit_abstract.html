@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+<div role="main">
+    <form action="/api/form_abstract" name="form-abstract" enctype="multipart/form-data" method="post">
+
+        <h3> Please fill out the form below and click the Submit button. </h3>
+        <br/>
+
+        <table class="auto-style2">
+            <tr>
+                <td colspan="2">Corresponding Author</td>
+                <td colspan="2">:
+                    <input type="text" name="corresponding_name" value="" required="True" size="60" maxlength="160"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">Email</td>
+                <td colspan="2">:
+                    <input type="email" name="corresponding_email" value="" required="True" size="60" maxlength="160"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">Paper Title</td>
+                <td colspan="2">:
+                    <input type="text" name="submission_title" value="" required="True" size="60" maxlength="400"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">Keywords</td>
+                <td colspan="2">:
+                    <input type="text" name="submission_keywords" value="" required="True" size="60" maxlength="160"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">Upload Article (doc or zip)*</td>
+                <td colspan="2">:
+                    <input name="submission_pdf_file" type="file" required="True">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4"> &nbsp; </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    If you prefer not to have your paper published in the ICMSA2024 Proceedings, please indicate here.†
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">&nbsp; </td>
+                <td colspan="1">
+                    <input type="radio" id="yes_proceedings" name="in_proceedings" value="yes" checked>
+                    <label for="yes_proceedings">yes, include in the Proceedings</label>
+                </td>
+                <td colspan="1">
+                    <input type="radio" id="no_proceedings" name="in_proceedings" value="no">
+                    <label for="no_proceedings">no, do not include in the Proceedings</label></td>
+                <td colspan="1"></td>
+            </tr>
+
+            <tr>
+                <td colspan="4"> &nbsp; </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    Do you wish for the conference organizer to submit your paper for consideration for journal publication?†
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">&nbsp; </td>
+                <td colspan="1">
+                    <input type="radio" id="yes_journal" name="in_journal" value="yes" checked>
+                    <label for="yes_journal">yes</label>
+                </td>
+                <td colspan="1">
+                    <input type="radio" id="no_journal" name="in_journal" value="no">
+                    <label for="no_journal">no</label></td>
+                <td colspan="1"></td>
+            </tr>
+
+        </table>
+
+        <br>
+        Notes: <br>
+        &nbsp;&nbsp; &nbsp;&nbsp;    * If you are making a submission of LaTeX source files, kindly compress all your .tex files and figures into a single zip file before submitting.<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;    † All submissions are subject to the review process.
+        <br>
+        <br>
+
+        <input type="submit" class="auto-style1 auto-style20" value="Submit">
+        <button onClick="window.location.reload();">Reset</button>
+    </form>
+</div>
+
+
+<hr>
+
+{% endblock %}

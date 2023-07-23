@@ -159,6 +159,10 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# direnv
+# add-on by me
+.directory
 .envrc
 .direnv
+venv
+.idea
+submit_db/
