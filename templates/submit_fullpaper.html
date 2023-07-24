@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+<div role="main">
+    <form action="/api/form_fullpaper" name="form-fullpaper" enctype="multipart/form-data" method="post">
+
+        <h3> Please fill out the form below and click the Submit button. </h3>
+        <br/>
+
+        <table class="auto-style2">
+            <tr>
+                <td colspan="2">Previous Submission ID*:</td>
+                <td colspan="2">
+                    <input type="text" name="submission_id" value="" required="True" size="60" maxlength="160"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">Email*:</td>
+                <td colspan="2">
+                    <input type="email" name="corresponding_email" value="" required="True" size="60" maxlength="160"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">Upload Full Paper (doc or zip)*</td>
+                <td colspan="2">:
+                    <input name="submission_pdf_file" type="file" required="True">
+                </td>
+            </tr>
+        </table>
+
+        <br>
+        Notes: <br>
+        &nbsp;&nbsp; &nbsp;&nbsp; * If you are making a submission of LaTeX source files, kindly compress all your .tex
+        files and figures into a single zip file before submitting.<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; † All submissions are subject to the review process.
+        <br>
+        <br>
+
+        <input type="submit" class="auto-style1 auto-style20" value="Submit">
+        <button onClick="window.location.reload();">Reset</button>
+    </form>
+</div>
+
+
+<hr>
+
+{% endblock %}

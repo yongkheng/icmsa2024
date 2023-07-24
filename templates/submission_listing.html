@@ -12,10 +12,11 @@
     <tbody>
       <tr>
         <th>No.</th>
-        <th>Submitted Timestamp</th>
+        <th>Timestamp</th>
         <th>Submission ID</th>
-        <th>Rev</th>
+        <th>Rev No</th>
         <th>Corresponding Author</th>
+        <th>Type</th>
         <th>Title</th>
       </tr>
      {% for item in items %}
@@ -25,6 +26,7 @@
         <td>{{item.submission_id}}</td>
         <td><a href="/admin/query_submission?submission_id={{item.submission_id}}&revision_version={{item.revision_version}}">{{item.revision_version}}</a></td>
         <td>{{item.corresponding_name}}</td>
+        <td>{{item.submission_type}}</td>
         <td><a href="/api/get_receipt?fname={{item.submission_filename}}" target=”_blank” >{{item.submission_title}}<a></a></td>
       </tr>
     {% endfor %}

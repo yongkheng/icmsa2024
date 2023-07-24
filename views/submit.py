@@ -14,3 +14,11 @@ def submission(request: Request):
 @router.get("/submit_abstract")
 def submit_abstract(request: Request):
     return templates.TemplateResponse("submit_abstract.html", {"request": request})
+
+@router.get("/submit_fullpaper")
+def submit_abstract(request: Request):
+    return templates.TemplateResponse("submit_fullpaper.html", {"request": request})
+
+@router.get("/submit_manuscript")
+def submit_abstract(request: Request):
+    return templates.TemplateResponse("submit_manuscript.html", {"request": request})
