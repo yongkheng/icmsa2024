@@ -12,15 +12,11 @@ api = fastapi.FastAPI()
 def configure():
     api.mount("/static", StaticFiles(directory="static"), name="static")
 
-    # api.include_router(form_revise.router)
-    # api.include_router(form_rebuttal.router)
-    # api.include_router(submit_db.router)
-    # api.include_router(send_mail.router)
-    #
     api.include_router(index.router)
     api.include_router(submit.router)
     api.include_router(form_abstract.router)
     api.include_router(admin.router)
+
 
 if __name__ == "__main__":
     configure()

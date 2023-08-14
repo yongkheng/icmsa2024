@@ -24,6 +24,34 @@ class Submission(Base):
     fullpaper_filename = Column(String, index=True)
     fullpaper_content = Column(LargeBinary, index=True)
     fullpaper_receipt = Column(LargeBinary, index=True)
+
     camera_ready_filename = Column(String, index=True)
     camera_ready_content = Column(LargeBinary, index=True)
     camera_ready_receipt = Column(LargeBinary, index=True)
+
+    copy_right_filename = Column(String, index=True)
+    copy_right_content = Column(LargeBinary, index=True)
+    copy_right_receipt = Column(LargeBinary, index=True)
+
+class Registration(Base):
+    __tablename__ = "registration"
+    id = Column(Integer, primary_key=True)
+    submission_id = Column(String, index=True)
+    first_name = Column(String, index=True)
+    last_name = Column(String, index=True)
+    affiliation = Column(String, index=True)
+    email = Column(String, index=True)
+    phone = Column(String, index=True)
+
+    payment_proof_filename = Column(String, index=True)
+    payment_proof_content = Column(LargeBinary, index=True)
+    payment_proof_receipt = Column(LargeBinary, index=True)
+
+    student_status_proof_filename = Column(String, index=True)
+    student_status_proof_content = Column(LargeBinary, index=True)
+    student_status_proof_receipt = Column(LargeBinary, index=True)
+
+    participant_type = Column(String, index=True)
+    join_dinner = Column(String, index=True)
+    diet_allergic = Column(String, index=True)
+    additional_dinner_ticket = Column(Integer, index=True)
