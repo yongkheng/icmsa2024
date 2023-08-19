@@ -4,7 +4,7 @@ from starlette.staticfiles import StaticFiles
 
 # from api import form_submit, form_revise, form_rebuttal, submit_db, send_mail
 from views import index, submit, admin
-from api import form_abstract
+from api import utils, form_abstract, form_fullpaper, form_manuscript
 
 api = fastapi.FastAPI()
 
@@ -14,7 +14,10 @@ def configure():
 
     api.include_router(index.router)
     api.include_router(submit.router)
+    api.include_router(utils.router)
     api.include_router(form_abstract.router)
+    api.include_router(form_fullpaper.router)
+    api.include_router(form_manuscript.router)
     api.include_router(admin.router)
 
 

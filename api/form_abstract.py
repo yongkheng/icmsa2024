@@ -1,10 +1,8 @@
-from pathlib import Path
 from datetime import datetime
 from secrets import choice
 from database.config import get_settings
 from models import models
-from fastapi import Depends, APIRouter, Request, BackgroundTasks, Response
-from fastapi.responses import HTMLResponse
+from fastapi import Depends, APIRouter, Request, BackgroundTasks, HTTPException
 from database.database import SessionLocal, engine
 from sqlalchemy.orm import Session
 
@@ -62,6 +60,11 @@ async def form_abstract(request: Request, background_tasks: BackgroundTasks, db:
     filename = f"{submission_type}_{ts1}_{submission_id}_rev{rev_no}.{file_ext}"
     file_content = form["submission_pdf_file"].file.read()
 
+    if file_ext.lower() not in ['doc', 'zip', 'docx']:
+        message = "Please submit doc, docx or zip file only."
+        raise HTTPException(status_code=400, detail=message)
+
+
     submission_rec = models.Submission(
         submission_id=submission_id,
         revision_version=rev_no,
@@ -72,6 +75,7 @@ async def form_abstract(request: Request, background_tasks: BackgroundTasks, db:
         submission_keywords=form["submission_keywords"],
         submission_type="abstract",
         submission_filename=filename,
+
         abstract_filename=filename,
         abstract_content=file_content,
         abstract_receipt=None,
@@ -83,7 +87,12 @@ async def form_abstract(request: Request, background_tasks: BackgroundTasks, db:
         fullpaper_receipt=None,
         camera_ready_filename="",
         camera_ready_content=None,
-        camera_ready_receipt=None
+        camera_ready_receipt=None,
+        copy_right_filename = "",
+        copy_right_content= None,
+        copy_right_receipt = None
+
+
     )
     html = submit_receipt(request, submission_rec)
     print(type(html))
@@ -98,39 +107,3 @@ async def form_abstract(request: Request, background_tasks: BackgroundTasks, db:
     make_local_copy(submission_rec)
     return html
 
-
-@router.get("/api/get_file")
-async def get_abstract_file(
-        fname, request: Request, background_tasks: BackgroundTasks, db: Session = Depends(get_db),
-):
-    print(f"get_abstract_file(): {fname=}")
-    rec = (
-        db.query(models.Submission)
-        .filter(models.Submission.submission_filename == fname)
-        .first()
-    )
-
-    # Set the appropriate response headers for file download
-    response = Response(content=rec.abstract_content, media_type="application/octet-stream")
-    response.headers["Content-Disposition"] = f"attachment; filename={rec.abstract_filename}"
-
-    return response
-
-
-@router.get("/api/get_receipt")
-async def get_abstract_file(
-        fname, request: Request, background_tasks: BackgroundTasks, db: Session = Depends(get_db),
-):
-    print(f"get_abstract_file(): {fname=}")
-    rec = (
-        db.query(models.Submission)
-        .filter(models.Submission.submission_filename == fname)
-        .first()
-    )
-
-    html = 'unknown'
-    if rec.submission_type == "abstract":
-        html = rec.abstract_receipt
-
-    return HTMLResponse(content=html, status_code=200)
-#    return response
