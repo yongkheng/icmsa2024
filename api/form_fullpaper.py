@@ -34,6 +34,12 @@ async def form_fullpaper(request: Request, background_tasks: BackgroundTasks, db
     form = await request.form()
     form = dict(form)
 
+    file_ext = form["submission_pdf_file"].filename.split('.')[-1]
+    if file_ext.lower() not in ['doc', 'zip', 'docx']:
+        message = "Please submit doc, docx or zip file only."
+        raise HTTPException(status_code=400, detail=message)
+
+
     # retrieve record
     resp = (
         db.query(models.Submission)
