@@ -166,3 +166,4 @@ cython_debug/
 venv
 .idea
 submit_db/
+receipt.html
