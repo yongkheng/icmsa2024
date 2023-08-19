@@ -52,7 +52,6 @@ async def get_file(
 async def get_receipt(
         fname, request: Request, background_tasks: BackgroundTasks, db: Session = Depends(get_db),
 ):
-    print(f"get_abstract_file(): {fname=}")
     rec = (
         db.query(models.Submission)
         .filter(models.Submission.submission_filename == fname)
@@ -68,3 +67,39 @@ async def get_receipt(
         html = rec.camera_ready_receipt
 
     return HTMLResponse(content=html, status_code=200)
+
+@router.get("/api/get_payment_proof")
+async def get_payment_proof(
+        fname, request: Request, background_tasks: BackgroundTasks, db: Session = Depends(get_db),
+):
+    rec = (
+        db.query(models.Registration)
+        .filter(models.Registration.payment_proof_filename == fname)
+        .first()
+    )
+
+    content = rec.payment_proof_content
+
+    # Set the appropriate response headers for file download
+    response = Response(content=content, media_type="application/octet-stream")
+    response.headers["Content-Disposition"] = f"attachment; filename={fname}"
+
+    return response
+
+@router.get("/api/get_student_proof")
+async def get_payment_proof(
+        fname, request: Request, background_tasks: BackgroundTasks, db: Session = Depends(get_db),
+):
+    rec = (
+        db.query(models.Registration)
+        .filter(models.Registration.student_status_proof_filename == fname)
+        .first()
+    )
+
+    content = rec.student_status_proof_content
+
+    # Set the appropriate response headers for file download
+    response = Response(content=content, media_type="application/octet-stream")
+    response.headers["Content-Disposition"] = f"attachment; filename={fname}"
+
+    return response

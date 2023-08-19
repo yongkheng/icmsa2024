@@ -44,7 +44,7 @@
             <tr>
                 <td colspan="2">Paper Submission ID (if you have it):</td>
                 <td colspan="2">
-                    <input type="text" name="submission_id" value="" required="False" size="60" maxlength="160"/>
+                    <input type="text" name="submission_id" value="" size="60" maxlength="160"/>
                 </td>
             </tr>
             <tr>
@@ -55,15 +55,15 @@
                 <td colspan="1">Type of participant*:</td>
                 <td colspan="1">&nbsp;</td>
                 <td colspan="1">
-                    <input type="radio" id="participant_type" name="participant_type" value="yes" checked>
+                    <input type="radio" id="participant_type" name="participant_type" value="professional_presenter" checked>
                     <label for="professional_presenter">professional presenter</label>
                 </td>
                 <td colspan="1">
-                    <input type="radio" id="participant_type" name="participant_type" value="no" checked>
+                    <input type="radio" id="participant_type" name="participant_type" value="student_presenter" checked>
                     <label for="student_presenter">student presenter</label>
                 </td>
                 <td colspan="1">
-                    <input type="radio" id="participant_type" name="participant_type" value="no">
+                    <input type="radio" id="participant_type" name="participant_type" value="non_presenter">
                     <label for="non_presenter">non-presenter</label></td>
                 <td colspan="1"></td>
             </tr>
@@ -89,7 +89,7 @@
             <tr>
                 <td colspan="2">Food Allergic:</td>
                 <td colspan="2">
-                    <input type="text" name="diet_allergic" value="" required="False" size="60" maxlength="160" placeholder="None"/>
+                    <input type="text" name="diet_allergic" value="" size="60" maxlength="160" placeholder="None"/>
                 </td>
             </tr>
 
@@ -103,9 +103,9 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">Upload Proof of Student Status (pdf)*</td>
+                <td colspan="2">Upload Proof of Student Status (pdf)</td>
                 <td colspan="2">:
-                    <input name="submission_student_status_file" type="file" required="True">
+                    <input name="submission_student_status_file" type="file" >
                 </td>
             </tr>
         </table>

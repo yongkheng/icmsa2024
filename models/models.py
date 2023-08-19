@@ -36,22 +36,23 @@ class Submission(Base):
 class Registration(Base):
     __tablename__ = "registration"
     id = Column(Integer, primary_key=True)
-    submission_id = Column(String, index=True)
+    timestamp = Column(TIMESTAMP, index=True)
     first_name = Column(String, index=True)
     last_name = Column(String, index=True)
     affiliation = Column(String, index=True)
     email = Column(String, index=True)
     phone = Column(String, index=True)
-
-    payment_proof_filename = Column(String, index=True)
-    payment_proof_content = Column(LargeBinary, index=True)
-    payment_proof_receipt = Column(LargeBinary, index=True)
-
-    student_status_proof_filename = Column(String, index=True)
-    student_status_proof_content = Column(LargeBinary, index=True)
-    student_status_proof_receipt = Column(LargeBinary, index=True)
+    submission_id = Column(String, index=True)
 
     participant_type = Column(String, index=True)
     join_dinner = Column(String, index=True)
     diet_allergic = Column(String, index=True)
     additional_dinner_ticket = Column(Integer, index=True)
+
+    payment_proof_filename = Column(String, index=True)
+    payment_proof_content = Column(LargeBinary, index=True)
+
+    student_status_proof_filename = Column(String, index=True)
+    student_status_proof_content = Column(LargeBinary, index=True)
+
+    registration_receipt_content = Column(LargeBinary, index=True)
