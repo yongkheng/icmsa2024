@@ -29,3 +29,7 @@ def programme(request: Request):
 @router.get("/registration")
 def registration(request: Request):
     return templates.TemplateResponse("registration.html", {"request": request})
+
+@router.get("/sponsors")
+def sponsors(request: Request):
+    return templates.TemplateResponse("sponsors.html", {"request": request})
