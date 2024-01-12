@@ -36,7 +36,7 @@ async def get_file(
     if query_type=="abstract":
         content = rec.abstract_content
     elif query_type=="full":
-        content = "rec.fullpaper_content"
+        content = rec.fullpaper_content
         print(rec.submission_id, rec.revision_version)
     else:
         message = f"File not found: {fname=}"
