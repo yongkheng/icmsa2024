@@ -68,6 +68,21 @@ async def get_receipt(
 
     return HTMLResponse(content=html, status_code=200)
 
+@router.get("/api/get_registration_receipt")
+async def get_receipt(
+        id, request: Request, background_tasks: BackgroundTasks, db: Session = Depends(get_db),
+):
+    rec = (
+        db.query(models.Registration)
+        .filter(models.Registration.id == id)
+        .first()
+    )
+
+    html = rec.registration_receipt_content
+
+    return HTMLResponse(content=html, status_code=200)
+
+
 @router.get("/api/get_payment_proof")
 async def get_payment_proof(
         fname, request: Request, background_tasks: BackgroundTasks, db: Session = Depends(get_db),
@@ -87,7 +102,7 @@ async def get_payment_proof(
     return response
 
 @router.get("/api/get_student_proof")
-async def get_payment_proof(
+async def get_student_proof(
         fname, request: Request, background_tasks: BackgroundTasks, db: Session = Depends(get_db),
 ):
     rec = (

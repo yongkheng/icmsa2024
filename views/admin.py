@@ -32,3 +32,10 @@ def query(request: Request, db: Session = Depends(get_db)):
     return templates.TemplateResponse(
         "submission_listing.html", {"request": request, "items": responses}
     )
+
+@router.get("/admin/reg_summary", response_class=HTMLResponse)
+def query_registration(request: Request, db: Session = Depends(get_db)):
+    responses = db.query(models.Registration).all()
+    return templates.TemplateResponse(
+        "registration_listing.html", {"request": request, "items": responses}
+    )
