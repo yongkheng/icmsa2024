@@ -38,6 +38,10 @@ async def get_file(
     elif query_type=="full":
         content = rec.fullpaper_content
         print(rec.submission_id, rec.revision_version)
+    elif query_type=="camera":
+        print(f"get_file(): {fname=} {query_type}")
+        content = rec.fullpaper_content
+        print(rec.submission_id, rec.revision_version)
     else:
         message = f"File not found: {fname=}"
         raise HTTPException(status_code=400, detail=message)

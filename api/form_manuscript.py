@@ -96,6 +96,8 @@ async def form_manuscript(request: Request, background_tasks: BackgroundTasks, d
         )
 
 
+        print("***********", submission_filename, form["submission_pdf_file"])
+
         # generate receipt
         html = submit_receipt(request, new_rec)
         with open("receipt.html", 'wb') as f:
